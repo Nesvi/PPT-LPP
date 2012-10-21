@@ -20,16 +20,20 @@ class PPTGame
 
   def NewRound
     
-    for i in 0..10
-      HumanTurnV rand(3)
-      ComputerTurn()
-      Eval()
-    end
-    
+    HumanTurnV rand(3)
+    ComputerTurn()
+    Eval()    
     ShowResults()
     
   end
 
+  def NewRoundV h,c
+
+    HumanTurnV h
+    ComputerTurnV c
+    return Eval()    
+    
+  end
   def HumanTurn
 
     puts "Introduce tu eleccion:"
@@ -68,16 +72,27 @@ class PPTGame
     puts  "Computer selected: "+@computerSelect
   end
   
+  def ComputerTurnV v
+    
+    
+    
+    @computerSelect = Number2Value v
+
+    puts  "Computer selected: "+@computerSelect
+  end
+
   def Eval
     
     if(@computerSelect != @humanSelect)
 
       if(@result[@computerSelect] == @humanSelect)
         @humanWins+= 1
-          puts "Human Wins"
+        puts "Human Wins"
+        return 0 
       else
         @computerWins+=1
-          puts "Computer Wins"
+        puts "Computer Wins"
+        return 1
       end
     end
     
